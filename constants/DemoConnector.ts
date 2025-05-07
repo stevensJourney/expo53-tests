@@ -68,6 +68,6 @@ export class DemoConnector implements PowerSyncBackendConnector {
       console.debug(ex);
       throw ex;
     }
-    console.log("upload complete");
+    console.log("upload complete"); 
   }
 }

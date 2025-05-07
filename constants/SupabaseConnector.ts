@@ -73,6 +73,7 @@ export class SupabaseConnector implements PowerSyncBackendConnector {
   }
 
   async uploadData(database: AbstractPowerSyncDatabase): Promise<void> {
+    console.log("being upload");
     const transaction = await database.getNextCrudTransaction();
 
     if (!transaction) {
@@ -123,10 +124,12 @@ export class SupabaseConnector implements PowerSyncBackendConnector {
         console.error("Data upload error - discarding:", lastOp, ex);
         await transaction.complete();
       } else {
+        console.log("Caught error in uploadData", ex);
         // Error may be retryable - e.g. network error or temporary server error.
         // Throwing an error here causes this call to be retried after a delay.
         throw ex;
       }
+      console.log("uploadData complete");
     }
   }
 }

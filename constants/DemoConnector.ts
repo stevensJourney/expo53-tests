@@ -32,6 +32,7 @@ export class DemoConnector implements PowerSyncBackendConnector {
   }
 
   async uploadData(database: AbstractPowerSyncDatabase): Promise<void> {
+    console.log("being upload");
     const transaction = await database.getNextCrudTransaction();
 
     if (!transaction) {
@@ -67,5 +68,6 @@ export class DemoConnector implements PowerSyncBackendConnector {
       console.debug(ex);
       throw ex;
     }
+    console.log("upload complete");
   }
 }
